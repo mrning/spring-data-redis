@@ -47,6 +47,7 @@ public class RedisClusterConfiguration {
 
 	private Set<RedisNode> clusterNodes;
 	private Integer maxRedirects;
+	private String password;
 
 	/**
 	 * Creates new {@link RedisClusterConfiguration}.
@@ -59,14 +60,11 @@ public class RedisClusterConfiguration {
 	 * Creates {@link RedisClusterConfiguration} for given hostPort combinations.
 	 * 
 	 * <pre>
-	 * clusterHostAndPorts[0] = 127.0.0.1:23679
-	 * clusterHostAndPorts[1] = 127.0.0.1:23680
-	 * ...
+	 * clusterHostAndPorts[0] = 127.0.0.1:23679 clusterHostAndPorts[1] = 127.0.0.1:23680 ...
 	 * 
 	 * <pre>
 	 * 
-	 * @param cluster must not be
-	 * {@literal null}.
+	 * @param clusterNodes must not be {@literal null}.
 	 */
 	public RedisClusterConfiguration(Collection<String> clusterNodes) {
 		this(new MapPropertySource("RedisClusterConfiguration", asMap(clusterNodes, -1, -1, null)));
@@ -177,6 +175,22 @@ public class RedisClusterConfiguration {
 		for (String hostAndPort : hostAndPorts) {
 			addClusterNode(readHostAndPortFromString(hostAndPort));
 		}
+	}
+
+	/**
+	 * @return
+	 * @since 2.0
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @param password
+	 * @since 2.0
+	 */
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	private RedisNode readHostAndPortFromString(String hostAndPort) {
