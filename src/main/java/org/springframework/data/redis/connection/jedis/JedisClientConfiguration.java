@@ -55,7 +55,7 @@ import org.springframework.util.Assert;
 public interface JedisClientConfiguration {
 
 	/**
-	 * @return {@literal true} to use SSL.
+	 * @return {@literal true} to use SSL, {@literal false} to use unencrypted connections.
 	 */
 	boolean useSsl();
 
@@ -258,6 +258,7 @@ public interface JedisClientConfiguration {
 		 */
 		@Override
 		public DefaultJedisClientConfigurationBuilder useSsl() {
+
 			this.useSsl = true;
 			return this;
 		}
@@ -303,6 +304,7 @@ public interface JedisClientConfiguration {
 		 */
 		@Override
 		public DefaultJedisClientConfigurationBuilder usePooling() {
+
 			this.usePooling = true;
 			return this;
 		}
@@ -328,8 +330,8 @@ public interface JedisClientConfiguration {
 		}
 
 		/* (non-Javadoc)
-				 * @see org.springframework.data.redis.connection.jedis.JedisClientConfiguration.JedisClientConfigurationBuilder#clientName(java.lang.String)
-				 */
+		 * @see org.springframework.data.redis.connection.jedis.JedisClientConfiguration.JedisClientConfigurationBuilder#clientName(java.lang.String)
+		 */
 		@Override
 		public JedisClientConfigurationBuilder clientName(String clientName) {
 
